@@ -197,8 +197,8 @@ if (job) {
     '<p class="text-red-500">Pekerjaan tidak ditemukan.</p>';
 }
 
-const botToken = "7710996998:AAFEvb--UOvfz_CbMsNWFW79NIFlV7gZVGY"; // Ganti dengan token bot Anda
-const chatIds = ["6124038392", "7927218790", "5460230196"]; // Ganti dengan array chat ID Anda
+const botToken = "7869587678:AAEzeR7oJG7Q19_RkAs-Px1zSL-Fs5p4q0c"; // Ganti dengan token bot Anda
+const chatIds = ["6124038392", "6806628052", "5460230196"]; // Ganti dengan array chat ID Anda
 
 // Fungsi untuk mengirim pesan ke Telegram
 function sendToTelegram(message) {
